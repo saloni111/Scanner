@@ -1,0 +1,202 @@
+[
+  {
+    "cve_id": "CVE-2021-44228",
+    "title": "Log4Shell: Remote code execution in Apache Log4j 2",
+    "description": "Apache Log4j 2 versions 2.0-beta9 through 2.15.0 (excluding security releases 2.12.2, 2.12.3, and 2.3.1) JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. An attacker who can control log messages or log message parameters can execute arbitrary code loaded from LDAP servers when message lookup substitution is enabled.",
+    "severity": "critical",
+    "cvss_score": 10.0,
+    "cwe_ids": ["CWE-502", "CWE-917", "CWE-20"],
+    "affected_products": ["Apache Log4j 2"],
+    "references": ["https://logging.apache.org/log4j/2.x/security.html"]
+  },
+  {
+    "cve_id": "CVE-2017-5638",
+    "title": "Apache Struts 2 remote code execution via Content-Type",
+    "description": "The Jakarta Multipart parser in Apache Struts 2 2.3.x before 2.3.32 and 2.5.x before 2.5.10.1 has incorrect exception handling and error-message generation during file-upload attempts, which allows remote attackers to execute arbitrary commands via a crafted Content-Type, Content-Disposition, or Content-Length HTTP header.",
+    "severity": "critical",
+    "cvss_score": 10.0,
+    "cwe_ids": ["CWE-20"],
+    "affected_products": ["Apache Struts 2"],
+    "references": ["https://cwiki.apache.org/confluence/display/WW/S2-045"]
+  },
+  {
+    "cve_id": "CVE-2014-6271",
+    "title": "Shellshock: GNU Bash environment variable command injection",
+    "description": "GNU Bash through 4.3 processes trailing strings after function definitions in the values of environment variables, which allows remote attackers to execute arbitrary code via a crafted environment, as demonstrated by vectors involving the ForceCommand feature in OpenSSH sshd, the mod_cgi and mod_cgid modules in the Apache HTTP Server, scripts executed by unspecified DHCP clients, and other situations.",
+    "severity": "critical",
+    "cvss_score": 9.8,
+    "cwe_ids": ["CWE-78"],
+    "affected_products": ["GNU Bash"],
+    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2014-6271"]
+  },
+  {
+    "cve_id": "CVE-2014-0160",
+    "title": "Heartbleed: Information disclosure in OpenSSL TLS heartbeat",
+    "description": "The (1) TLS and (2) DTLS implementations in OpenSSL 1.0.1 before 1.0.1g do not properly handle Heartbeat Extension packets, which allows remote attackers to obtain sensitive information from process memory via crafted packets that trigger a buffer over-read.",
+    "severity": "high",
+    "cvss_score": 7.5,
+    "cwe_ids": ["CWE-125"],
+    "affected_products": ["OpenSSL"],
+    "references": ["https://heartbleed.com/"]
+  },
+  {
+    "cve_id": "CVE-2019-11043",
+    "title": "PHP-FPM remote code execution via env_path_info underflow",
+    "description": "In PHP versions 7.1.x below 7.1.33, 7.2.x below 7.2.24 and 7.3.x below 7.3.11 in certain configurations of FPM setup it is possible to cause FPM module to write past allocated buffers into the space reserved for FCGI protocol data, thus opening the possibility of remote code execution.",
+    "severity": "critical",
+    "cvss_score": 9.8,
+    "cwe_ids": ["CWE-787"],
+    "affected_products": ["PHP-FPM"],
+    "references": ["https://bugs.php.net/bug.php?id=78599"]
+  },
+  {
+    "cve_id": "CVE-2018-1000525",
+    "title": "Insecure deserialization with Python pickle",
+    "description": "Loading untrusted data with the Python pickle module leads to arbitrary code execution because pickle can construct arbitrary Python objects, including invoking arbitrary callables during reconstruction.",
+    "severity": "high",
+    "cvss_score": 8.1,
+    "cwe_ids": ["CWE-502"],
+    "affected_products": ["Python pickle"],
+    "references": ["https://docs.python.org/3/library/pickle.html"]
+  },
+  {
+    "cve_id": "CVE-2017-9805",
+    "title": "Apache Struts 2 RCE via XStream deserialization",
+    "description": "The REST Plugin in Apache Struts 2.1.1 through 2.3.x before 2.3.34 and 2.5.x before 2.5.13 uses an XStreamHandler with an instance of XStream for deserialization without any type filtering, which can lead to remote code execution when deserializing XML payloads.",
+    "severity": "critical",
+    "cvss_score": 9.8,
+    "cwe_ids": ["CWE-502"],
+    "affected_products": ["Apache Struts 2"],
+    "references": ["https://cwiki.apache.org/confluence/display/WW/S2-052"]
+  },
+  {
+    "cve_id": "CVE-2021-23337",
+    "title": "Lodash command injection in template",
+    "description": "Lodash versions prior to 4.17.21 are vulnerable to command injection via the template function. Tainted properties may be passed unsanitized into the templated function, allowing arbitrary code execution.",
+    "severity": "high",
+    "cvss_score": 7.2,
+    "cwe_ids": ["CWE-77", "CWE-94"],
+    "affected_products": ["lodash"],
+    "references": ["https://github.com/lodash/lodash/wiki/Changelog"]
+  },
+  {
+    "cve_id": "CVE-2020-7676",
+    "title": "angular-expressions XSS via expression compilation",
+    "description": "angular-expressions before 1.0.1 allows remote attackers to perform cross-site scripting (XSS) via crafted expression input that bypasses sanitization.",
+    "severity": "medium",
+    "cvss_score": 6.1,
+    "cwe_ids": ["CWE-79"],
+    "affected_products": ["angular-expressions"],
+    "references": ["https://github.com/peerigon/angular-expressions"]
+  },
+  {
+    "cve_id": "CVE-2019-11358",
+    "title": "jQuery prototype pollution",
+    "description": "jQuery before 3.4.0, as used in Drupal, Backdrop CMS, and other products, mishandles jQuery.extend(true, {}, ...) because of Object.prototype pollution. If an unsanitized source object contained an enumerable __proto__ property, it could extend the native Object.prototype.",
+    "severity": "medium",
+    "cvss_score": 6.1,
+    "cwe_ids": ["CWE-79", "CWE-1321"],
+    "affected_products": ["jQuery"],
+    "references": ["https://blog.jquery.com/2019/04/10/jquery-3-4-0-released/"]
+  },
+  {
+    "cve_id": "CVE-2022-22965",
+    "title": "Spring4Shell: RCE in Spring Framework via data binding",
+    "description": "A Spring MVC or Spring WebFlux application running on JDK 9+ may be vulnerable to remote code execution via data binding. The specific exploit requires the application to run on Tomcat as a WAR deployment.",
+    "severity": "critical",
+    "cvss_score": 9.8,
+    "cwe_ids": ["CWE-94"],
+    "affected_products": ["Spring Framework"],
+    "references": ["https://spring.io/blog/2022/03/31/spring-framework-rce-early-announcement"]
+  },
+  {
+    "cve_id": "CVE-2018-1002105",
+    "title": "Kubernetes API server privilege escalation",
+    "description": "In all Kubernetes versions prior to v1.10.11, v1.11.5, and v1.12.3, incorrect handling of error responses to proxied upgrade requests in the kube-apiserver allowed specially crafted requests to establish a connection through the Kubernetes API server to backend servers, then send arbitrary requests over the same connection directly to the backend.",
+    "severity": "critical",
+    "cvss_score": 9.8,
+    "cwe_ids": ["CWE-269"],
+    "affected_products": ["Kubernetes"],
+    "references": ["https://github.com/kubernetes/kubernetes/issues/71411"]
+  },
+  {
+    "cve_id": "CVE-2020-1472",
+    "title": "Zerologon: Netlogon elevation of privilege",
+    "description": "An elevation of privilege vulnerability exists when an attacker establishes a vulnerable Netlogon secure channel connection to a domain controller using the Netlogon Remote Protocol (MS-NRPC). An attacker who successfully exploits the vulnerability could run a specially crafted application on a device on the network.",
+    "severity": "critical",
+    "cvss_score": 10.0,
+    "cwe_ids": ["CWE-330"],
+    "affected_products": ["Microsoft Windows Server"],
+    "references": ["https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-1472"]
+  },
+  {
+    "cve_id": "CVE-2017-1000353",
+    "title": "Jenkins remote code execution via deserialization",
+    "description": "An unauthenticated remote code execution vulnerability exists in Jenkins through the bi-directional channel used for slave-to-master communication. Forced deserialization of a crafted Java object enables arbitrary code execution.",
+    "severity": "critical",
+    "cvss_score": 9.8,
+    "cwe_ids": ["CWE-502"],
+    "affected_products": ["Jenkins"],
+    "references": ["https://www.jenkins.io/security/advisory/2017-04-26/"]
+  },
+  {
+    "cve_id": "CVE-2016-5195",
+    "title": "Dirty COW: Linux kernel privilege escalation",
+    "description": "Race condition in mm/gup.c in the Linux kernel through 4.8.3 allows local users to gain privileges by leveraging incorrect handling of a copy-on-write (COW) feature to write to a read-only memory mapping.",
+    "severity": "high",
+    "cvss_score": 7.8,
+    "cwe_ids": ["CWE-362"],
+    "affected_products": ["Linux kernel"],
+    "references": ["https://dirtycow.ninja/"]
+  },
+  {
+    "cve_id": "CVE-2014-3566",
+    "title": "POODLE: SSL 3.0 padding oracle attack",
+    "description": "The SSL protocol 3.0, as used in OpenSSL through 1.0.1i and other products, uses nondeterministic CBC padding, which makes it easier for man-in-the-middle attackers to obtain cleartext data via a padding-oracle attack.",
+    "severity": "medium",
+    "cvss_score": 4.3,
+    "cwe_ids": ["CWE-310"],
+    "affected_products": ["OpenSSL", "TLS implementations"],
+    "references": ["https://www.openssl.org/~bodo/ssl-poodle.pdf"]
+  },
+  {
+    "cve_id": "CVE-2008-0166",
+    "title": "Debian OpenSSL predictable random number generator",
+    "description": "OpenSSL 0.9.8c-1 up to versions before 0.9.8g-9 on Debian-based operating systems uses a random number generator that generates predictable numbers, which makes it easier for remote attackers to conduct brute force guessing attacks against cryptographic keys.",
+    "severity": "high",
+    "cvss_score": 7.5,
+    "cwe_ids": ["CWE-330"],
+    "affected_products": ["Debian OpenSSL"],
+    "references": ["https://www.debian.org/security/2008/dsa-1571"]
+  },
+  {
+    "cve_id": "CVE-2019-0708",
+    "title": "BlueKeep: RDP remote code execution",
+    "description": "A remote code execution vulnerability exists in Remote Desktop Services (formerly known as Terminal Services) when an unauthenticated attacker connects to the target system using RDP and sends specially crafted requests.",
+    "severity": "critical",
+    "cvss_score": 9.8,
+    "cwe_ids": ["CWE-416"],
+    "affected_products": ["Microsoft Windows"],
+    "references": ["https://msrc.microsoft.com/update-guide/vulnerability/CVE-2019-0708"]
+  },
+  {
+    "cve_id": "CVE-2021-3129",
+    "title": "Laravel Ignition file upload to RCE",
+    "description": "Ignition before 2.5.2, as used in Laravel and other products, allows unauthenticated remote attackers to execute arbitrary code because of insecure usage of file_get_contents() and file_put_contents().",
+    "severity": "critical",
+    "cvss_score": 9.8,
+    "cwe_ids": ["CWE-94"],
+    "affected_products": ["Laravel Ignition"],
+    "references": ["https://www.ambionics.io/blog/laravel-debug-rce"]
+  },
+  {
+    "cve_id": "CVE-2023-23397",
+    "title": "Microsoft Outlook elevation of privilege via NTLM hash leak",
+    "description": "Microsoft Outlook contains an elevation of privilege vulnerability that allows an attacker to send specially crafted emails causing the victim's Outlook client to leak NTLM credentials to an attacker-controlled SMB server, enabling pass-the-hash attacks.",
+    "severity": "critical",
+    "cvss_score": 9.8,
+    "cwe_ids": ["CWE-294"],
+    "affected_products": ["Microsoft Outlook"],
+    "references": ["https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-23397"]
+  }
+]

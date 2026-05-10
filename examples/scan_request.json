@@ -1,0 +1,11 @@
+{
+  "triggered_by": "demo",
+  "repository": "demo/vulnerable-app",
+  "files": [
+    {
+      "path": "vulnerable_app.py",
+      "language": "python",
+      "content": "import pickle, subprocess, yaml, hashlib, os\n\nAPI_KEY = \"AKIAIOSFODNN7EXAMPLE\"\nDB_PASSWORD = \"super-secret-prod-password-123\"\nDEBUG = True\n\ndef login(username, password):\n    cursor.execute(f\"SELECT * FROM users WHERE name='{username}' AND password='{password}'\")\n\ndef run_user_command(cmd):\n    return subprocess.run(cmd, shell=True).stdout\n\ndef load_blob(blob):\n    return pickle.loads(blob)\n\ndef parse_config(stream):\n    return yaml.load(stream)\n\ndef token(uid):\n    return hashlib.md5(str(uid).encode()).hexdigest()\n\ndef ls(path):\n    return os.system(f\"ls {path}\")\n"
+    }
+  ]
+}
