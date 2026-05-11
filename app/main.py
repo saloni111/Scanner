@@ -58,12 +58,19 @@ def health() -> HealthResponse:
 
 @app.get("/", include_in_schema=False)
 def root() -> FileResponse:
-    """Serve the frontend."""
+    """Serve the landing page."""
     return FileResponse(_STATIC_DIR / "index.html")
+
+
+@app.get("/demo", include_in_schema=False)
+@app.get("/demo.html", include_in_schema=False)
+def demo() -> FileResponse:
+    """Serve the interactive demo."""
+    return FileResponse(_STATIC_DIR / "demo.html")
 
 
 app.include_router(scans.router)
 app.include_router(cve.router)
 
-# Mount static assets last so API routes take precedence.
-app.mount("/static", StaticFiles(directory=_STATIC_DIR), name="static")
+# Mount static assets at root so CSS/JS references in HTML work (e.g. href="styles.css").
+app.mount("/", StaticFiles(directory=_STATIC_DIR, html=True), name="static")

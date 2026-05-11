@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scanner — Interactive Demo</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23fafafa'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%2309090B' font-size='18' font-weight='bold'>S</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="demo-report.css">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo"><div class="logo-mark">S</div> Scanner</a>
+  <div class="nav-links"><a href="index.html">Back to Home</a></div>
+  <div></div>
+</nav>
+<div class="demo-layout"><div class="demo-container">
+  <div class="step-indicator" id="stepIndicator">
+    <div class="step-dot active" data-step="1">1</div><div class="step-line" data-after="1"></div>
+    <div class="step-dot" data-step="2">2</div><div class="step-line" data-after="2"></div>
+    <div class="step-dot" data-step="3">3</div><div class="step-line" data-after="3"></div>
+    <div class="step-dot" data-step="4">4</div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step-panel active" id="step1">
+    <h2 class="step-title">Connect your GitHub account</h2>
+    <p class="step-subtitle">Paste a GitHub Personal Access Token. We only need read access.</p>
+    <div class="form-group">
+      <label class="form-label" for="tokenInput">Personal Access Token</label>
+      <input type="password" class="form-input" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+      <p class="form-hint">Create at <code>Settings → Developer settings → Tokens</code>. Scopes: <code>repo</code>, <code>read:org</code></p>
+      <p class="form-error" id="connectError"></p>
+    </div>
+    <div class="permissions">
+      <span class="perm-badge">repo (read)</span><span class="perm-badge">read:org</span><span class="perm-badge">no write access</span>
+    </div>
+    <div class="action-bar"><div></div>
+      <button class="btn-primary" id="connectBtn" onclick="connectGitHub()">Connect to GitHub</button>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-panel" id="step2">
+    <h2 class="step-title">Select a Pull Request</h2>
+    <p class="step-subtitle">Choose a repository and PR to analyze.</p>
+    <div class="user-card" id="userCard"></div>
+    <label class="form-label">Repository</label>
+    <input type="text" class="search-input" id="repoSearch" placeholder="Search repositories..." oninput="filterRepos()">
+    <div class="repo-list" id="repoList"></div>
+    <div id="prSection" style="display:none">
+      <label class="form-label" style="margin-top:20px">Open Pull Requests</label>
+      <div class="loading-inline" id="prLoading" style="display:none">Loading pull requests...</div>
+      <p class="form-error" id="prError"></p>
+      <div id="prListContainer"></div>
+    </div>
+    <div class="action-bar">
+      <button class="btn-back" onclick="goToStep(1)">Back</button>
+      <button class="btn-primary" id="scanBtn" onclick="startScan()" style="opacity:.4;pointer-events:none">Start Scan</button>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-panel" id="step3">
+    <h2 class="step-title" id="scanTitle">Scanning...</h2>
+    <p class="step-subtitle">Fetching PR data from GitHub and analyzing changes.</p>
+    <div class="scan-terminal" id="scanTerminal"></div>
+    <div class="scan-progress">
+      <div class="scan-progress-bar"><div class="scan-progress-fill" id="progressFill"></div></div>
+      <div class="scan-progress-label" id="progressLabel">Initializing...</div>
+    </div>
+    <p class="form-error" id="scanError" style="margin-top:12px"></p>
+  </div>
+
+  <!-- STEP 4: REPORT -->
+  <div class="step-panel" id="step4">
+    <div id="reportHeader" class="rpt-header"></div>
+    <div id="riskPanel" class="rpt-risk"></div>
+    <div id="statsBar" class="rpt-stats"></div>
+    <div class="rpt-section-label">Security Findings</div>
+    <div id="flagsPanel"></div>
+    <div class="rpt-section-label" style="margin-top:32px">Changed Files</div>
+    <div id="filesPanel"></div>
+    <div class="rpt-section-label" style="margin-top:32px">Commit History</div>
+    <div id="commitsPanel"></div>
+    <div class="action-bar" style="margin-top:40px">
+      <button class="btn-back" onclick="resetDemo()">Start Over</button>
+      <button class="btn-primary" id="shareBtn" onclick="shareReport()">Copy Report</button>
+    </div>
+  </div>
+</div></div>
+<script src="demo.js"></script>
+</body>
+</html>
