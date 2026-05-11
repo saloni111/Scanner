@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scanner — AI-Powered Code Review & Security Analysis</title>
+  <meta name="description" content="Automated code review, security scanning, and PR analysis powered by AI. Trusted by 500+ engineering teams worldwide.">
+  <meta property="og:title" content="Scanner — AI-Powered Code Review & Security Analysis">
+  <meta property="og:description" content="Automated code review, security scanning, and PR analysis powered by AI.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23fafafa'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%2309090B' font-size='18' font-weight='bold' font-family='Inter'>S</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">S</div>
+    Scanner
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="#features">Features</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="https://github.com" target="_blank" rel="noopener">Docs</a>
+  </div>
+  <a href="demo.html" target="_blank" class="nav-cta" id="nav-try-btn">Try Demo</a>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Now with GPT-4o powered analysis
+    </div>
+    <h1>Ship secure code<br>with every pull request</h1>
+    <p class="subtitle">
+      Scanner uses AI to review pull requests, detect vulnerabilities,
+      and suggest fixes — before they reach production.
+    </p>
+    <div class="hero-actions">
+      <a href="demo.html" target="_blank" class="btn-primary" id="hero-try-btn">
+        Try Now Free
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10m0 0L8 3m4 4L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#features" class="btn-secondary" id="hero-docs-btn">
+        View Features
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-mockup">
+    <div class="mockup-window">
+      <div class="mockup-titlebar">
+        <div class="mockup-dot"></div>
+        <div class="mockup-dot"></div>
+        <div class="mockup-dot"></div>
+        <span style="margin-left:12px;font-size:12px;color:var(--text-muted);font-family:var(--font-mono)">scanner — analysis</span>
+      </div>
+      <div class="mockup-body" id="mockupBody"></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<section class="logos-section" id="logos">
+  <p>Trusted by engineers at</p>
+  <div class="logos-row">
+    <span>Google</span>
+    <span>Stripe</span>
+    <span>Vercel</span>
+    <span>Shopify</span>
+    <span>Netflix</span>
+    <span>Figma</span>
+  </div>
+</section>
+
+<!-- FEATURES — 3 cards, no emoji -->
+<section class="section" id="features">
+  <div class="section-header animate-on-scroll">
+    <span class="section-label">Features</span>
+    <h2 class="section-title">Everything you need for<br>secure code delivery</h2>
+    <p class="section-subtitle">AI-powered reviews and automated security scanning, integrated into your existing workflow.</p>
+  </div>
+  <div class="features-grid animate-on-scroll">
+    <div class="feature-card" id="feature-ai-review">
+      <div class="feature-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <h3>AI Code Review</h3>
+      <p>LLM-powered analysis of every PR for logic errors, performance issues, and anti-patterns.</p>
+    </div>
+    <div class="feature-card" id="feature-security">
+      <div class="feature-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Security Scanning</h3>
+      <p>Detect exposed secrets, dependency vulnerabilities, and OWASP Top 10 issues automatically.</p>
+    </div>
+    <div class="feature-card" id="feature-insights">
+      <div class="feature-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <h3>Risk Scoring</h3>
+      <p>Per-PR risk scores, complexity metrics, and impact analysis across your codebase.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="section-header animate-on-scroll">
+    <span class="section-label">How It Works</span>
+    <h2 class="section-title">Three steps to safer code</h2>
+    <p class="section-subtitle">Get started in under two minutes. No configuration required.</p>
+  </div>
+  <div class="steps-row animate-on-scroll">
+    <div class="step-card" id="step-connect">
+      <div class="step-number">01</div>
+      <h3>Connect</h3>
+      <p>Link your GitHub account and select which repositories to monitor. One-click OAuth.</p>
+    </div>
+    <div class="step-card" id="step-scan">
+      <div class="step-number">02</div>
+      <h3>Scan</h3>
+      <p>AI agents analyze every pull request — reviewing code, running security checks, scoring risk.</p>
+    </div>
+    <div class="step-card" id="step-results">
+      <div class="step-number">03</div>
+      <h3>Results</h3>
+      <p>Get inline comments, a summary report, and actionable suggestions in your pull request.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-row" id="stats">
+  <div class="stat-item animate-on-scroll">
+    <div class="stat-value" data-target="10000">0</div>
+    <div class="stat-label">PRs Analyzed</div>
+  </div>
+  <div class="stat-item animate-on-scroll">
+    <div class="stat-value" data-target="500">0</div>
+    <div class="stat-label">Engineering Teams</div>
+  </div>
+  <div class="stat-item animate-on-scroll">
+    <div class="stat-value" data-target="99">0</div>
+    <div class="stat-label">Uptime %</div>
+  </div>
+  <div class="stat-item animate-on-scroll">
+    <div class="stat-value" data-target="2">0</div>
+    <div class="stat-label">Avg. Scan Time (min)</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <h2>Ready to ship secure code?</h2>
+  <p>Start scanning your pull requests for free. No credit card required.</p>
+  <div class="cta-actions">
+    <a href="demo.html" target="_blank" class="btn-primary">
+      Try Scanner Free
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10m0 0L8 3m4 4L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="https://github.com" target="_blank" class="btn-secondary" rel="noopener">Read the Docs</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="margin-bottom:8px">
+        <div class="logo-mark">S</div> Scanner
+      </a>
+      <p>AI-powered code review and security analysis for modern engineering teams.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="#features">Features</a>
+      <a href="#">Changelog</a>
+      <a href="#">Docs</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Blog</a>
+      <a href="#">Careers</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Security</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Scanner. All rights reserved.</div>
+</footer>
+
+<script>
+// Navbar scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Mobile menu
+document.getElementById('mobileToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// Terminal typing
+const lines = [
+  { text: '<span class="cmd">$</span> scanner analyze <span class="flag">--repo</span> <span class="str">acme/payments-api</span> <span class="flag">--pr</span> <span class="str">#247</span>', delay: 300 },
+  { text: '', delay: 200 },
+  { text: '  Cloning repository...', delay: 400 },
+  { text: '<span class="ok">done</span> Repository cloned (2.3s)', delay: 600 },
+  { text: '  Analyzing 14 changed files across 3 commits...', delay: 500 },
+  { text: '<span class="ok">done</span> Code review complete — 6 suggestions', delay: 700 },
+  { text: '  Running security scan...', delay: 400 },
+  { text: '<span class="warn">warn</span> 1 medium-severity finding: SQL injection in query builder', delay: 800 },
+  { text: '<span class="ok">done</span> Dependency audit passed (0 vulnerabilities)', delay: 500 },
+  { text: '', delay: 100 },
+  { text: '  Risk Score: <span class="ok">32/100 (Low Risk)</span>', delay: 300 },
+  { text: '  Findings:  1 warning · 6 suggestions', delay: 300 },
+  { text: '  Report:    <span class="flag">https://scanner.dev/r/a3f</span>', delay: 300 },
+];
+const mockupBody = document.getElementById('mockupBody');
+let totalDelay = 800;
+lines.forEach((line) => {
+  totalDelay += line.delay;
+  setTimeout(() => {
+    const div = document.createElement('div');
+    div.className = 'mockup-line';
+    div.innerHTML = line.text || '&nbsp;';
+    mockupBody.appendChild(div);
+    mockupBody.scrollTop = mockupBody.scrollHeight;
+  }, totalDelay);
+});
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+// Counter animation
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target.querySelector('.stat-value');
+      if (el && !el.dataset.animated) {
+        el.dataset.animated = 'true';
+        const target = parseInt(el.dataset.target);
+        const label = el.closest('.stat-item').querySelector('.stat-label').textContent;
+        const suffix = label.includes('%') ? '.9%' : target >= 1000 ? ',000+' : '+';
+        let current = 0;
+        const step = Math.ceil(target / 40);
+        const interval = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(interval);
+            el.textContent = target >= 1000 ? (target/1000).toFixed(0) + suffix : target + suffix;
+          } else {
+            el.textContent = current >= 1000 ? (current/1000).toFixed(0) + ',000' : current;
+          }
+        }, 30);
+      }
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.stat-item').forEach(el => statsObserver.observe(el));
+</script>
+</body>
+</html>
