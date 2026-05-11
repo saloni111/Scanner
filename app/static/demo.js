@@ -71,7 +71,7 @@ async function startScan(){
   const T=document.getElementById('scanTerminal'),F=document.getElementById('progressFill'),L=document.getElementById('progressLabel');
   function log(m,p){const d=document.createElement('div');d.className='scan-line';const n=new Date();d.innerHTML=`<span class="time">[${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}:${String(n.getSeconds()).padStart(2,'0')}]</span> ${m}`;T.appendChild(d);T.scrollTop=T.scrollHeight;if(p!=null){F.style.width=p+'%';L.textContent=p+'% complete';}}
   try{
-    log('Initializing Scanner v2.4.1...',5);await delay(300);
+    log('Initializing Aegis v2.4.1...',5);await delay(300);
     log(`Fetching PR #${selectedPR} from ${repo}...`,15);
     const details=await ghFetch(`https://api.github.com/repos/${repo}/pulls/${selectedPR}`);
     prData.details=details;log(`<span class="ok">done</span> PR: "${esc(details.title)}"`,25);await delay(200);
@@ -250,7 +250,7 @@ function renderReport(risk,flags){
 function shareReport(){
   const d=prData.details,f=prData.files,c=prData.commits;
   const totalAdd=f.reduce((s,x)=>s+x.additions,0),totalDel=f.reduce((s,x)=>s+x.deletions,0);
-  const text=`Scanner Security Report\nPR #${d.number}: ${d.title}\nAuthor: ${d.user.login} | ${d.head.ref} → ${d.base.ref}\nFiles: ${f.length} | +${totalAdd} / -${totalDel} | Commits: ${c.length}\n${d.html_url}`;
+  const text=`Aegis Security Report\nPR #${d.number}: ${d.title}\nAuthor: ${d.user.login} | ${d.head.ref} → ${d.base.ref}\nFiles: ${f.length} | +${totalAdd} / -${totalDel} | Commits: ${c.length}\n${d.html_url}`;
   navigator.clipboard.writeText(text).then(()=>{const b=document.getElementById('shareBtn');b.textContent='Copied to clipboard';setTimeout(()=>{b.textContent='Share Report';},2500);});
 }
 function resetDemo(){selectedRepo=null;selectedPR=null;prData={details:null,files:[],commits:[]};goToStep(2);}

@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scanner — AI-Powered Code Review & Security Analysis</title>
-  <meta name="description" content="Automated code review, security scanning, and PR analysis powered by AI. Trusted by 500+ engineering teams worldwide.">
-  <meta property="og:title" content="Scanner — AI-Powered Code Review & Security Analysis">
+  <title>Aegis — AI-Powered Code Security</title>
+  <meta name="description" content="Automated code review, security scanning, and PR analysis powered by AI.">
+  <meta property="og:title" content="Aegis — AI-Powered Code Security">
   <meta property="og:description" content="Automated code review, security scanning, and PR analysis powered by AI.">
   <meta property="og:type" content="website">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23fafafa'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%2309090B' font-size='18' font-weight='bold' font-family='Inter'>S</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23fafafa'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%2309090B' font-size='18' font-weight='bold' font-family='Inter'>A</text></svg>">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,8 +16,8 @@
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <a href="#" class="nav-logo">
-    <div class="logo-mark">S</div>
-    Scanner
+    <div class="logo-mark">A</div>
+    Aegis
   </a>
   <div class="nav-links" id="navLinks">
     <a href="#features">Features</a>
@@ -40,7 +40,7 @@
     </div>
     <h1>Ship secure code<br>with every pull request</h1>
     <p class="subtitle">
-      Scanner uses AI to review pull requests, detect vulnerabilities,
+      Aegis uses AI to review pull requests, detect vulnerabilities,
       and suggest fixes — before they reach production.
     </p>
     <div class="hero-actions">
@@ -60,25 +60,14 @@
         <div class="mockup-dot"></div>
         <div class="mockup-dot"></div>
         <div class="mockup-dot"></div>
-        <span style="margin-left:12px;font-size:12px;color:var(--text-muted);font-family:var(--font-mono)">scanner — analysis</span>
+        <span style="margin-left:12px;font-size:12px;color:var(--text-muted);font-family:var(--font-mono)">aegis — analysis</span>
       </div>
       <div class="mockup-body" id="mockupBody"></div>
     </div>
   </div>
 </section>
 
-<!-- LOGOS -->
-<section class="logos-section" id="logos">
-  <p>Trusted by engineers at</p>
-  <div class="logos-row">
-    <span>Google</span>
-    <span>Stripe</span>
-    <span>Vercel</span>
-    <span>Shopify</span>
-    <span>Netflix</span>
-    <span>Figma</span>
-  </div>
-</section>
+
 
 <!-- FEATURES — 3 cards, no emoji -->
 <section class="section" id="features">
@@ -164,7 +153,7 @@
   <p>Start scanning your pull requests for free. No credit card required.</p>
   <div class="cta-actions">
     <a href="demo.html" target="_blank" class="btn-primary">
-      Try Scanner Free
+      Try Aegis Free
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10m0 0L8 3m4 4L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
     <a href="https://github.com" target="_blank" class="btn-secondary" rel="noopener">Read the Docs</a>
@@ -176,7 +165,7 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="#" class="nav-logo" style="margin-bottom:8px">
-        <div class="logo-mark">S</div> Scanner
+        <div class="logo-mark">A</div> Aegis
       </a>
       <p>AI-powered code review and security analysis for modern engineering teams.</p>
     </div>
@@ -199,7 +188,7 @@
       <a href="#">Security</a>
     </div>
   </div>
-  <div class="footer-bottom">&copy; 2026 Scanner. All rights reserved.</div>
+  <div class="footer-bottom">&copy; 2026 Aegis. All rights reserved.</div>
 </footer>
 
 <script>
@@ -216,7 +205,7 @@ document.getElementById('mobileToggle').addEventListener('click', () => {
 
 // Terminal typing
 const lines = [
-  { text: '<span class="cmd">$</span> scanner analyze <span class="flag">--repo</span> <span class="str">acme/payments-api</span> <span class="flag">--pr</span> <span class="str">#247</span>', delay: 300 },
+  { text: '<span class="cmd">$</span> aegis analyze <span class="flag">--repo</span> <span class="str">acme/payments-api</span> <span class="flag">--pr</span> <span class="str">#247</span>', delay: 300 },
   { text: '', delay: 200 },
   { text: '  Cloning repository...', delay: 400 },
   { text: '<span class="ok">done</span> Repository cloned (2.3s)', delay: 600 },
@@ -228,7 +217,7 @@ const lines = [
   { text: '', delay: 100 },
   { text: '  Risk Score: <span class="ok">32/100 (Low Risk)</span>', delay: 300 },
   { text: '  Findings:  1 warning · 6 suggestions', delay: 300 },
-  { text: '  Report:    <span class="flag">https://scanner.dev/r/a3f</span>', delay: 300 },
+  { text: '  Report:    <span class="flag">https://aegis.dev/r/a3f</span>', delay: 300 },
 ];
 const mockupBody = document.getElementById('mockupBody');
 let totalDelay = 800;
