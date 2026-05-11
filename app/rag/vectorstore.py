@@ -22,13 +22,21 @@ class CVEVectorStore:
     def get(self, cve_id: str) -> CVERecord | None:
         return self.db.get(CVERecord, cve_id)
 
+    @property
+    def _is_sqlite(self) -> bool:
+        return self.db.bind.dialect.name == "sqlite"  # type: ignore[union-attr]
+
     def search(self, query: str, *, top_k: int = 5) -> list[CVEMatch]:
         """Return the `top_k` CVE entries most similar to `query`.
 
-        Uses pgvector cosine distance. Distance is converted to a 0-1
-        similarity score (1 = identical).
+        Uses pgvector cosine distance on Postgres. Returns an empty list on
+        SQLite (which doesn't support the <=> operator) so local dev runs
+        cleanly without warnings.
         """
         if not query.strip():
+            return []
+
+        if self._is_sqlite:
             return []
 
         query_vec = embed_text(query)

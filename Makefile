@@ -1,11 +1,12 @@
-.PHONY: help install dev up down migrate seed test lint format scan-demo
+.PHONY: help install local dev up down migrate seed test lint format scan-demo
 
 help:
 	@echo "Targets:"
 	@echo "  install       Install Python deps in the current venv"
+	@echo "  local         Run the API locally with SQLite (no Docker needed)"
 	@echo "  up            Start Postgres + API via docker-compose"
 	@echo "  down          Stop docker-compose stack"
-	@echo "  dev           Run the API locally with hot reload"
+	@echo "  dev           Run the API with hot reload (requires Postgres)"
 	@echo "  migrate       Apply Alembic migrations"
 	@echo "  seed          Load the bundled CVE seed data"
 	@echo "  test          Run the test suite"
@@ -15,6 +16,9 @@ help:
 
 install:
 	pip install -r requirements.txt
+
+local:
+	python scripts/run_local.py
 
 up:
 	docker compose up --build -d
