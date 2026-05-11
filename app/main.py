@@ -1,15 +1,20 @@
 """FastAPI entrypoint."""
 
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from app import __version__
 from app.api import cve, scans
 from app.config import get_settings
 from app.schemas.scan import HealthResponse
 from app.utils.logger import get_logger, setup_logging
+
+_STATIC_DIR = Path(__file__).parent / "static"
 
 logger = get_logger(__name__)
 
@@ -51,14 +56,14 @@ def health() -> HealthResponse:
     return HealthResponse(version=__version__, llm_enabled=settings.llm_enabled)
 
 
-@app.get("/", tags=["meta"])
-def root() -> dict:
-    return {
-        "name": "code-security-scanner",
-        "version": __version__,
-        "docs": "/docs",
-    }
+@app.get("/", include_in_schema=False)
+def root() -> FileResponse:
+    """Serve the frontend."""
+    return FileResponse(_STATIC_DIR / "index.html")
 
 
 app.include_router(scans.router)
 app.include_router(cve.router)
+
+# Mount static assets last so API routes take precedence.
+app.mount("/static", StaticFiles(directory=_STATIC_DIR), name="static")

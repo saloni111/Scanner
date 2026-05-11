@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, Response, status
+from fastapi import APIRouter, BackgroundTasks, Depends, Header, HTTPException, Query, Response, status
 from sqlalchemy import desc, func, select
 from sqlalchemy.orm import Session, selectinload
 
@@ -81,13 +81,17 @@ def scan_pull_request(
     background: BackgroundTasks,
     db: Session = Depends(get_db),
     scanner: ScannerService = Depends(_scanner),
+    x_github_token: str | None = Header(default=None),
 ) -> ScanResult:
     """Pull files from a GitHub PR and run them through the agents.
 
     The scan starts immediately and continues in the background; clients can
     poll `GET /scans/{id}` to track progress.
+
+    A GitHub token can be supplied via the `X-Github-Token` header (used by
+    the web UI) or pre-configured as the `GITHUB_TOKEN` environment variable.
     """
-    gh = GitHubService()
+    gh = GitHubService(token=x_github_token)
     try:
         files, commit_sha = gh.fetch_pr_files(payload.repository, payload.pr_number)
     except Exception as exc:

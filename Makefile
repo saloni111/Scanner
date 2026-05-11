@@ -18,7 +18,7 @@ install:
 	pip install -r requirements.txt
 
 local:
-	python scripts/run_local.py
+	python3 scripts/run_local.py
 
 up:
 	docker compose up --build -d
@@ -33,7 +33,7 @@ migrate:
 	alembic upgrade head
 
 seed:
-	python -m app.rag.cve_loader --seed
+	python3 -m app.rag.cve_loader --seed
 
 test:
 	pytest -q
@@ -48,4 +48,4 @@ format:
 scan-demo:
 	curl -sS -X POST http://localhost:8000/scans \
 		-H "Content-Type: application/json" \
-		-d @examples/scan_request.json | python -m json.tool
+		-d @examples/scan_request.json | python3 -m json.tool
