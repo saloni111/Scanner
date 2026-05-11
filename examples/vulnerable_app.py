@@ -43,3 +43,7 @@ def make_token(user_id: int) -> str:
 
 def os_call(path: str) -> int:
     return os.system(f"ls {path}")
+
+# Additional vulnerable pattern for PR scan demo
+SECRET_KEY = 'hardcoded-jwt-secret-do-not-use'
+def deserialize(data): import yaml; return yaml.load(data)  # unsafe
