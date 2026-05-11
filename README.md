@@ -64,46 +64,63 @@ exactly what was flagged, when, and on which commit.
 
 ## Quick start
 
-**One-click cloud deploy:** [Deploy to Render](https://render.com/deploy?repo=https://github.com/saloni111/Scanner) — provisions Postgres + the API from `render.yaml` and gives you a live HTTPS URL.
+### Option 1 — Run locally (no Docker, no Postgres needed)
 
-**Locally**, the fastest path is `docker compose`:
+The fastest way to see it work. Uses SQLite under the hood so there's
+nothing to install beyond Python.
 
 ```bash
-git clone <this-repo> scanner && cd scanner
-cp .env.example .env
-# Optional: paste your OPENAI_API_KEY into .env. Without it, the LLM
-# agents are skipped and you still get the rule-based scanner + RAG.
+git clone https://github.com/saloni111/Scanner && cd Scanner
 
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+make local        # starts the API on http://127.0.0.1:8000
+```
+
+Then in a second terminal:
+
+```bash
+make scan-demo    # POSTs the bundled vulnerable file and prints findings
+```
+
+You should get back **9 findings in under 100ms** — a hardcoded AWS key,
+`pickle.loads`, `subprocess(shell=True)`, a SQL injection via f-string,
+weak MD5, debug mode on, and more. Each one comes with the file path,
+line number, CWE id, and a fix recommendation.
+
+Want to try it interactively? Open **http://127.0.0.1:8000/docs** in your
+browser — the Swagger UI lets you paste any code snippet and hit "Execute"
+without writing a single curl command.
+
+> **Optional:** add `OPENAI_API_KEY=sk-...` to a `.env` file to unlock
+> the LLM agent (catches context-dependent bugs like missing auth checks,
+> SSRF, taint-flow issues) and the AI-written scan summary. The scanner
+> works fully without it — the LLM agents just skip gracefully.
+
+---
+
+### Option 2 — One-click cloud deploy
+
+[**Deploy to Render**](https://render.com/deploy?repo=https://github.com/saloni111/Scanner) — reads `render.yaml` from the repo, provisions a free Postgres + the API container, runs migrations, and gives you a live public HTTPS URL in ~5 minutes.
+
+---
+
+### Option 3 — Full stack with Docker
+
+Spins up Postgres (with pgvector), runs migrations, seeds the CVE
+knowledge base, and starts the API — all in one command.
+
+```bash
+cp .env.example .env        # optionally paste OPENAI_API_KEY here
 docker compose up --build
 ```
 
-Once it's up:
+Once it's running, same as above:
 
 ```bash
-# Scan the bundled vulnerable example
-curl -X POST http://localhost:8000/scans \
-  -H "Content-Type: application/json" \
-  -d @examples/scan_request.json | python -m json.tool
-
-# Or browse the auto-generated docs
+make scan-demo
 open http://localhost:8000/docs
-```
-
-You should see findings for the hardcoded AWS key, the `pickle.loads` call,
-the `subprocess(..., shell=True)`, the SQL f-string, and a few more.
-
-### Without Docker
-
-```bash
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-
-# Postgres with pgvector. Use Docker just for the DB if you'd like.
-export DATABASE_URL='postgresql+psycopg2://scanner:scanner@localhost:5432/scanner'
-
-alembic upgrade head
-python -m app.rag.cve_loader --seed
-uvicorn app.main:app --reload
 ```
 
 ---
@@ -176,7 +193,8 @@ alembic/                    Database migrations
 data/cve_seed.json          ~20 well-known CVEs to bootstrap the RAG store
 deploy/aws/                 ECS task definition + step-by-step deploy guide
 examples/                   Vulnerable demo file + ready-to-POST request
-scripts/scan_local.py       CLI: scan a folder against a running API
+scripts/run_local.py        Bootstrap script for `make local` (SQLite, no Docker)
+scripts/scan_local.py       CLI: scan a local folder against a running API
 tests/                      Pytest suite
 ```
 
