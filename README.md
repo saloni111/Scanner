@@ -64,7 +64,9 @@ exactly what was flagged, when, and on which commit.
 
 ## Quick start
 
-The fastest path is `docker compose`:
+**One-click cloud deploy:** [Deploy to Render](https://render.com/deploy?repo=https://github.com/saloni111/Scanner) — provisions Postgres + the API from `render.yaml` and gives you a live HTTPS URL.
+
+**Locally**, the fastest path is `docker compose`:
 
 ```bash
 git clone <this-repo> scanner && cd scanner

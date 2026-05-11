@@ -1,0 +1,47 @@
+# Render Blueprint
+# Provision a Postgres (with pgvector) + the API in one click:
+#   https://render.com/deploy?repo=https://github.com/saloni111/Scanner
+#
+# After the first deploy, set OPENAI_API_KEY in the dashboard to enable the
+# LLM-powered agents. The scanner still works without it (rule-based +
+# fallback embeddings).
+
+databases:
+  - name: scanner-db
+    databaseName: scanner
+    user: scanner
+    plan: free
+    postgresMajorVersion: "16"
+
+services:
+  - type: web
+    name: scanner-api
+    runtime: docker
+    plan: free
+    region: oregon
+    healthCheckPath: /health
+    autoDeploy: true
+    dockerfilePath: ./Dockerfile
+    # Render injects $PORT at runtime. We also run Alembic + seed the CVE
+    # store every boot — both are idempotent.
+    dockerCommand: >
+      sh -c "alembic upgrade head &&
+             python -m app.rag.cve_loader --seed || true;
+             uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: scanner-db
+          property: connectionString
+      - key: APP_ENV
+        value: production
+      - key: LOG_LEVEL
+        value: INFO
+      - key: LLM_MODEL
+        value: gpt-4o-mini
+      - key: EMBEDDING_MODEL
+        value: text-embedding-3-small
+      - key: OPENAI_API_KEY
+        sync: false   # set this manually in the Render dashboard
+      - key: GITHUB_TOKEN
+        sync: false   # optional; only needed for /scans/pr

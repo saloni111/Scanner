@@ -2,7 +2,7 @@
 
 from functools import lru_cache
 
-from pydantic import Field
+from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -23,6 +23,17 @@ class Settings(BaseSettings):
     database_url: str = Field(
         default="postgresql+psycopg2://scanner:scanner@localhost:5432/scanner"
     )
+
+    @field_validator("database_url")
+    @classmethod
+    def _normalize_db_url(cls, v: str) -> str:
+        """Accept the postgres:// scheme some hosts hand out (Heroku, Render)
+        and the bare postgresql:// scheme; both get the psycopg2 driver."""
+        if v.startswith("postgres://"):
+            return "postgresql+psycopg2://" + v[len("postgres://") :]
+        if v.startswith("postgresql://") and "+psycopg2" not in v:
+            return "postgresql+psycopg2://" + v[len("postgresql://") :]
+        return v
 
     # LLM
     openai_api_key: str = Field(default="")
