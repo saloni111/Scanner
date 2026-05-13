@@ -21,9 +21,10 @@ definition included for deploys.
 
 ## Demo
 
-<video src="assets/demo.mp4" controls width="100%"></video>
+![Demo](assets/demo.gif)
 
 > End-to-end scan: paste a vulnerable file → agents run → findings + risk score returned in under 100 ms.
+> [Watch full video](assets/demo.mp4)
 
 ---
 
