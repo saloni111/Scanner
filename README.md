@@ -19,6 +19,14 @@ definition included for deploys.
 
 ---
 
+## Demo
+
+<video src="assets/demo.mp4" controls width="100%"></video>
+
+> End-to-end scan: paste a vulnerable file → agents run → findings + risk score returned in under 100 ms.
+
+---
+
 ## What it actually does
 
 When you submit a scan, the request flows through a **LangGraph** pipeline
@@ -97,31 +105,6 @@ without writing a single curl command.
 > the LLM agent (catches context-dependent bugs like missing auth checks,
 > SSRF, taint-flow issues) and the AI-written scan summary. The scanner
 > works fully without it — the LLM agents just skip gracefully.
-
----
-
-### Option 2 — One-click cloud deploy
-
-[**Deploy to Render**](https://render.com/deploy?repo=https://github.com/saloni111/Scanner) — reads `render.yaml` from the repo, provisions a free Postgres + the API container, runs migrations, and gives you a live public HTTPS URL in ~5 minutes.
-
----
-
-### Option 3 — Full stack with Docker
-
-Spins up Postgres (with pgvector), runs migrations, seeds the CVE
-knowledge base, and starts the API — all in one command.
-
-```bash
-cp .env.example .env        # optionally paste OPENAI_API_KEY here
-docker compose up --build
-```
-
-Once it's running, same as above:
-
-```bash
-make scan-demo
-open http://localhost:8000/docs
-```
 
 ---
 
